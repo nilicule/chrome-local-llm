@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome LLM Interaction</title>
+    <script>
+        async function processInput() {
+            const userInput = document.getElementById('userInput').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerText = 'Processing...';
+
+            try {
+                const session = await window.ai.createTextSession();
+                const response = await session.prompt(userInput);
+                outputDiv.innerText = response;
+            } catch (error) {
+                outputDiv.innerText = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Chrome LLM Interaction</h1>
+    <input type="text" id="userInput" placeholder="Enter your prompt">
+    <button onclick="processInput()">Submit</button>
+    <div id="output"></div>
+    <div>
+        <br /><br />
+        To enable:<br />
+        <ul>
+            <li>Download the latest version of Google Canary
+            <li>Type `chrome://flags` into the address bar.
+            <li>Look for “Prompt API for Gemini Nano” and change its setting to ‘Enabled’.
+            <li>Also, search for “Enables optimization guide on device” and set it to ‘Enabled’.
+            <li>Restart the browser by clicking the ‘Relaunch’ button.
+            <li>Once the browser reopens, type `chrome://components/` into the address bar, find “Optimization Guide On Device Model”, and click ‘check for update’.
+            <li>You should see it start downloading , Wait until the download completes.
+        </ul>
+    </div>
+</body>
+</html>
